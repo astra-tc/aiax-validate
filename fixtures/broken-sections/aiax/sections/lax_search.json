@@ -1,0 +1,94 @@
+{
+ "aiax_version": "0.1",
+ "section_id": "lax_search",
+ "inputs": {
+  "type": "object",
+  "properties": {
+   "query": {
+    "type": "string",
+    "maxLength": 100,
+    "description": "free text matched on name, slug, description and capabilities"
+   },
+   "skill_ids": {
+    "type": "string",
+    "description": "comma separated skill ids"
+   },
+   "min_acp_score": {
+    "type": "number",
+    "description": "only verified Kognai offers at or above this score"
+   },
+   "origin": {
+    "type": "string",
+    "enum": [
+     "kognai",
+     "outside"
+    ]
+   },
+   "limit": {
+    "type": "integer",
+    "maximum": 100,
+    "default": 20
+   },
+   "offset": {
+    "type": "integer",
+    "default": 0
+   }
+  }
+ },
+ "outputs": {
+  "type": "object",
+  "properties": {
+   "results": {
+    "type": "array",
+    "description": "offer and relevance; aiax_ready marks offers whose site serves a valid AIAX manifest"
+   },
+   "count": {
+    "type": "integer"
+   }
+  },
+  "required": [
+   "results",
+   "count"
+  ]
+ },
+ "pricing": {
+  "model": "free",
+  "amount": "0",
+  "currency": "USDC",
+  "rail": "none"
+ },
+ "examples": [
+  {
+   "description": "Free call.",
+   "request": {
+    "method": "GET",
+    "url": "https://lax.kognai.ai/registry/search",
+    "query": {
+     "query": "image"
+    }
+   },
+   "response": {
+    "results": [
+     {
+      "offer": {
+       "name": "Kreativ",
+       "verified": true,
+       "aiax_ready": true
+      },
+      "relevance": 0.9
+     }
+    ],
+    "count": 1
+   }
+  }
+ ],
+ "pact_mandate_template": null,
+ "openapi_operation_id": "lax_search",
+ "extensions": {
+  "x-kognai": {
+   "endpoint": "https://lax.kognai.ai/registry/search",
+   "method": "GET",
+   "settlement": "Free."
+  }
+ }
+}

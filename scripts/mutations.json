@@ -1,0 +1,11 @@
+[
+  {"id": "M1 extra fields allowed", "file": "src/schema.ts", "from": "else if (schema.additionalProperties === false)", "to": "else if (false)"},
+  {"id": "M2 required not checked", "file": "src/schema.ts", "from": "if (!(r in obj)) out.push(", "to": "if (false) out.push("},
+  {"id": "M3 section_id mismatch ignored", "file": "src/validate.ts", "from": "if (typeof sid === 'string' && sid !== ep.id)", "to": "if (false)"},
+  {"id": "M4 no fallback manifest path", "file": "src/validate.ts", "from": "export const MANIFEST_PATHS = ['/.well-known/aiax.json', '/aiax/manifest.json'];", "to": "export const MANIFEST_PATHS = ['/.well-known/aiax.json'];"},
+  {"id": "M5 exit 0 on invalid", "file": "src/cli.ts", "from": "return report.ok ? 0 : 1;", "to": "return 0;"},
+  {"id": "M6 entry url resolved against site root", "file": "src/validate.ts", "from": "surl = new URL(ep.url, murl).toString();", "to": "surl = new URL(ep.url, origin + '/x/').toString();"},
+  {"id": "M7 pattern not checked", "file": "src/schema.ts", "from": "if (schema.pattern && !new RegExp", "to": "if (false && !new RegExp"},
+  {"id": "M8 errors do not lower the score", "file": "src/validate.ts", "from": "const raw = 100 - ERROR_COST * errors", "to": "const raw = 100 - 0 * errors"},
+  {"id": "M9 non JSON section accepted", "file": "src/validate.ts", "from": "return { ok: false, reason: 'is not valid JSON' };", "to": "return { ok: true, json: {}, bytes: 0 };"}
+]
